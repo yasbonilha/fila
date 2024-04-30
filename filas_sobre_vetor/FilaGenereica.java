@@ -1,20 +1,20 @@
-public class Fila {
+public class FilaGenereica <T> {
     private int primeiro;
     private int ultimo;
-    private int[] dados;
+    private T[] dados;
     private int tamanho; //nao temos como saber se o vetor circular esta cheio ou nao, por isso temos que acrescentar um marcador
     public static final int CAPACIDADE_MINIMA = 10;
     // delcaração de constantes - nao pode ser modificado (variavel final nao pode ser modificada, metodo final nao pode ser sobrescrito e classe final nao pode ser herdada). quando nao parametrizamos um valor, chamamos ele de "numero magico" pq surgiu do nada
     
-    public Fila(int capacidade) {
-        dados = new int[capacidade];
+    public FilaGenereica(int capacidade) {
+        dados = (T[]) new Object[capacidade]; //nao podemos criar um vetor do tipo generico, pois ele nao sabe o tamanho da memoria que sera necessaria para alocar aqueles elementos. podemos fazer o casting de um vetor de Objects. Ele dá como unsafe operation pois dependendo de como operamos a hierarquia de classes, podemos acabar com algum erro.
         ultimo = dados.length -1;
         primeiro = 0;
         tamanho = 0;
 
     }
 
-    public Fila() {
+    public FilaGenereica () {
         // dados = new int[CAPACIDADE_MINIMA];
         // ultimo = CAPACIDADE_MINIMA - 1;
         // primeiro = 0;
@@ -35,7 +35,7 @@ public class Fila {
         return (pos + 1) % dados.length;
     }
 
-    public boolean enfileira(int i){
+    public boolean enfileira(T i){
         //enfileiramos quando a fila nao esta cheia, desenfileiramos quando a lista nao esta vazia
 
         if(estaCheia()) return false;
@@ -45,12 +45,14 @@ public class Fila {
         return true;
     }
 
-    public int desenfileira() {
-        if(estaVazia()) return -1;
-        int temp = dados [primeiro];
+    public T desenfileira() {
+        T info = null;
+        if(!estaVazia()){
+        info = dados[primeiro];
         primeiro = proxima(primeiro);
         tamanho--;
-        return temp;
+        }
+        return info;
     }
 
     @Override
@@ -61,39 +63,9 @@ public class Fila {
 
         int i = primeiro;
         do{
-            s += dados[i] + " ";
+            s += dados[i] + "\n";
             i = proxima(i);
         }while (i != proxima(ultimo));
-        return s;
-    }
-
-    public String stringDoVetor() { //esta falando sobre o vetor, nao sobre a fila. logo, pode haver lixo no vetor que nao é mostrado na fila devido as exclusoes sla
-        if (estaVazia()) return ("_ _ _ _ _ _ _ _ _ _");
-        String s = "";
-        
-        int i =0;
-        if( primeiro <= ultimo) {
-            for (i = 0; i < primeiro; i ++){
-                s += "_ ";
-            }
-            for (i = 0; i <=ultimo; i++){
-                s += dados[i] + " ";
-            }
-            for (i=ultimo + 1; i <dados.length; i++){
-                s+= "_ ";
-            }
-
-        } else {
-            for (i=0; i <=ultimo; i++){
-                s += dados[i];
-            }
-            for( i= ultimo + 1; i<primeiro; i++){
-                s += "_ ";
-            }
-            for (i = primeiro; i <dados.length; i++){
-                s+= dados[i] + " ";
-            }
-        }
         return s;
     }
 }

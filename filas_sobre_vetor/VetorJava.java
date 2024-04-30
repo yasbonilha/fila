@@ -1,4 +1,3 @@
-package filas_sobre_vetor;
 
 public class VetorJava {
     public static void main(String[] args) {
