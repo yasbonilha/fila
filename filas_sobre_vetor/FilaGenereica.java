@@ -1,4 +1,5 @@
-public class FilaGenereica <T> {
+public class FilaGenereica <T> { //fila sobre vetor generica
+    //podemos colocar o que quisermos dentro do diamante, mas há uma convenção - E para elementos de uma coleção, T para tipos
     private int primeiro;
     private int ultimo;
     private T[] dados;
@@ -6,6 +7,7 @@ public class FilaGenereica <T> {
     public static final int CAPACIDADE_MINIMA = 10;
     // delcaração de constantes - nao pode ser modificado (variavel final nao pode ser modificada, metodo final nao pode ser sobrescrito e classe final nao pode ser herdada). quando nao parametrizamos um valor, chamamos ele de "numero magico" pq surgiu do nada
     
+    @SuppressWarnings("unchecked")
     public FilaGenereica(int capacidade) {
         dados = (T[]) new Object[capacidade]; //nao podemos criar um vetor do tipo generico, pois ele nao sabe o tamanho da memoria que sera necessaria para alocar aqueles elementos. podemos fazer o casting de um vetor de Objects. Ele dá como unsafe operation pois dependendo de como operamos a hierarquia de classes, podemos acabar com algum erro.
         ultimo = dados.length -1;

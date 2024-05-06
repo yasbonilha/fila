@@ -13,7 +13,7 @@ public class TesteFila {
                     System.out.println(f.desenfileira() + " saiu");
             }
             System.out.println(f);
-            // System.out.println(f.stringDoVetor());
+            System.out.println(f.stringDoVetor());
         } while (!f.estaVazia());
     }
 }

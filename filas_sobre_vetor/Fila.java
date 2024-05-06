@@ -61,14 +61,14 @@ public class Fila {
 
         int i = primeiro;
         do{
-            s += dados[i] + " ";
+            s += dados[i] + " "; //essa linha é de processamento - aqui estamos abstraindo ao varrermos a nossa estrutura - podemos ver que essa é uma dica de como nós percorremos a nossa estrutura
             i = proxima(i);
         }while (i != proxima(ultimo));
         return s;
     }
 
     public String stringDoVetor() { //esta falando sobre o vetor, nao sobre a fila. logo, pode haver lixo no vetor que nao é mostrado na fila devido as exclusoes sla
-        if (estaVazia()) return ("_ _ _ _ _ _ _ _ _ _");
+        if (estaVazia()) return ("_ _ _ _ _ _ _ _ _ _"); //estamos no prórpio modelo. os métodos de uma classe estão se referindo aos atributos da propria classe. na prática, estamos deixando o this. implícito, mas ele poderia ser explícito. mas geralmente usamos o this só quando há ambiguidade
         String s = "";
         
         int i =0;
@@ -76,7 +76,7 @@ public class Fila {
             for (i = 0; i < primeiro; i ++){
                 s += "_ ";
             }
-            for (i = 0; i <=ultimo; i++){
+            for (i = primeiro; i <=ultimo; i++){
                 s += dados[i] + " ";
             }
             for (i=ultimo + 1; i <dados.length; i++){
@@ -85,7 +85,7 @@ public class Fila {
 
         } else {
             for (i=0; i <=ultimo; i++){
-                s += dados[i];
+                s += dados[i] + " ";
             }
             for( i= ultimo + 1; i<primeiro; i++){
                 s += "_ ";
