@@ -54,7 +54,7 @@ public class Fila {
     }
 
     @Override
-    public String toString(){
+    public String toString(){ //nao podemos fazer um for com !proxima(ultimo) porque vai dar erro no caso de o ultimo acabar encostando com o primeiro - ele nao vi printar nada
         if (estaVazia()) return "fila vazia";
 
         String s = ""; //string vazia é diferente de string nula
